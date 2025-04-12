@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFCP 2025 - Building For Creator Points</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #3a0ca3 0%, #7209b7 50%, #f72585 100%);
+        }
+
+        .contest-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.7);
+        }
+
+        .poll-option:hover {
+            background: rgba(114, 9, 183, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7209b7 0%, #f72585 100%);
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+
+        .timer-box {
+            background: rgba(26, 26, 46, 0.7);
+            border: 2px solid #7209b7;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold text-pink-500 glow-text">BFCP 2025</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#about"
+                                class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            <a href="#rules"
+                                class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Rules</a>
+                            <a href="#episodes"
+                                class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Episodes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button onclick="window.location.href='https://discord.gg/Mtkb9qxy';"
+                            class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                            Register The Next Year! </button>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#contest"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contest</a>
+                <a href="#prize"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Prize</a>
+                <a href="#rules"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Rules</a>
+                <a href="#episodes"
+                    class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Episodes</a>
+                <button onclick="window.location.href='https://discord.gg/Mtkb9qxy';"
+                    class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white w-full px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">
+                    Register The Next Year! </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">
+                        <span class="glow-text">BFCP 2025</span><br>
+                        <span class="text-2xl md:text-4xl font-semibold">Building For Creator Points</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8">
+                        IDK what to say Here.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div
+                            class="absolute -top-6 -left-6 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                        </div>
+                        <div
+                            class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                        </div>
+                        <div
+                            class="absolute top-20 -right-4 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+                        </div>
+                        <div
+                            class="relative bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl p-6 shadow-2xl overflow-hidden">
+                            <div class="mt-4 text-center">
+                                <h3 class="text-xl font-bold text-white">Latest From BFCP</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/icPHfD6um9E?autoplay=0&rel=0"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Does Anyone Know What BFDI Is? Well It Stands For "Battle For Dream Island", And I Really Like The
+                    Show, What If.. I Make It In GD..... BUUTTT!! Remaking Shit Is Just Boring, Bad, And Unoriginal, Not
+                    Creative Too, So What If I Name The Show "Battle For Creator Points" BFCP, And For More FUN Measure,
+                    So Basically BFDI Is Just A Contest, 25 Contest Actually And One Person Won Dream Island, So I Kinda
+                    Wanna Make Yall Battle In Like 10 Contest Or Something And There Will Be 1 Winner That Survives.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="contest-card p-8 rounded-xl">
+                    <div class="text-purple-500 text-4xl mb-4">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Prize</h3>
+                    <p class="text-gray-300">
+                        A Creator Point
+                    </p>
+                </div>
+
+                <div class="contest-card p-8 rounded-xl">
+                    <div class="text-pink-500 text-4xl mb-4">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Time Challenge</h3>
+                    <p class="text-gray-300">
+                        It is Random Every Time
+                    </p>
+                </div>
+
+                <div class="contest-card p-8 rounded-xl">
+                    <div class="text-blue-500 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">GD Creators In The Contest</h3>
+                    <p class="text-gray-300">
+                        PhoenixKM (Host)
+                        1.Muscle Cars Rule
+                        2.Mi phax
+                        3.ImmPotatoGD
+                        4.Gru‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+                        5.Crestial‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+                        6.Abso‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+                        7.MeadowDream
+                        8.Mitchell‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+                        9.Ryxenol7
+                        10.Innerspacezombie
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p class="text-gray-300">
+        If your level isn't rate-worthy enough to win, we'll personally help upgrade it before
+        submitting to mods for rating, ensuring you still get your Creator Point.
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Rules Section -->
+    <section id="rules" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Contest Rules</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    The requirements for participating in BFCP 2026.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="contest-card p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold text-white mb-6">Participation Rules</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">1</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Eligibility</h4>
+                                <p class="text-gray-300">
+                                    When it is availiable
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">2</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Registration</h4>
+                                <p class="text-gray-300">
+                                    Must register before the deadline to participate in the contest.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">3</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Time Management</h4>
+                                <p class="text-gray-300">
+                                    Make yout level Before the dead line
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contest-card p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold text-white mb-6">Submission Rules</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">1</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Deadlines</h4>
+                                <p class="text-gray-300">
+                                    All submissions must be completed and submitted by the specified deadlines.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">2</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Quality</h4>
+                                <p class="text-gray-300">
+                                    Levels must demonstrate high-quality structuring and gameplay worthy of rating.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">3</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-lg font-semibold text-white">Improvements</h4>
+                                <p class="text-gray-300">
+                                    The Level will be imporved over and over the BFCP contest.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section id="episodes" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">BFCP Episodes</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    First Episode
+                </p>
+            </div>
+
+            <div class="contest-card p-8 rounded-xl mb-12">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-1/2">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/icPHfD6um9E?autoplay=0&rel=0" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <h3 class="text-2xl font-bold text-white mb-4">BFCP Challenge Episode 1</h3>
+                        <p class="text-gray-300 mb-6">
+                            The first episode of the BFCP Challenge series. Watch as contestants begin their journey
+                            to create amazing levels and compete for the Creator Point.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-sm">#BFCP2025</span>
+                            <span
+                                class="px-3 py-1 bg-pink-900 bg-opacity-50 text-pink-300 rounded-full text-sm">#CreatorPoint</span>
+                            <span
+                                class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-sm">#BuildingContest</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-90 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">BFCP 2025</h3>
+                    <p class="text-gray-400">
+                        BFCP 2025 for a CP.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="#rules" class="text-gray-400 hover:text-white transition">Rules</a></li>
+                        <li><a href="#episodes" class="text-gray-400 hover:text-white transition">Episodes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.youtube.com/@GDPhoenixKM" class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://discord.gg/Mtkb9qxy" class="text-gray-400 hover:text-white text-xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Countdown timer
+        function updateCountdown() {
+            // Set the target date (8 days from now)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 8);
+            targetDate.setHours(17, 0, 0, 0); // Set to 17 hours (as mentioned)
+
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                // Contest has ended
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Voting system
+        let selectedOption = null;
+        const voteCounts = [0, 0, 0, 0]; // Initialize vote counts for each option
+
+        function selectOption(element, optionNumber) {
+            // Remove selection from all options
+            document.querySelectorAll('.poll-option').forEach(opt => {
+                opt.querySelector('.option-dot').classList.add('hidden');
+                opt.classList.remove('bg-purple-900', 'bg-opacity-30');
+            });
+
+            // Select the clicked option
+            element.querySelector('.option-dot').classList.remove('hidden');
+            element.classList.add('bg-purple-900', 'bg-opacity-30');
+
+            selectedOption = optionNumber;
+
+            // Enable submit button
+            document.getElementById('submitVote').disabled = false;
+            document.getElementById('submitVote').classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        document.getElementById('submitVote').addEventListener('click', () => {
+            if (selectedOption) {
+                // Increment vote count for selected option
+                voteCounts[selectedOption - 1]++;
+
+                // Update the vote count display
+                document.getElementById(`vote-count-${selectedOption}`).textContent = voteCounts[selectedOption - 1];
+
+                // Show thank you message
+                document.getElementById('thankYouMessage').classList.remove('hidden');
+
+                // Show results section
+                document.getElementById('resultsSection').classList.remove('hidden');
+
+                // Update results display
+                updateResultsDisplay();
+
+                // Disable all options and submit button
+                document.querySelectorAll('.poll-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                });
+
+                document.getElementById('submitVote').disabled = true;
+                document.getElementById('submitVote').classList.add('opacity-50', 'cursor-not-allowed');
+
+                // In a real app, you would send the vote to a server here
+                console.log(`Vote submitted for option ${selectedOption}`);
+            }
+        });
+
+        function updateResultsDisplay() {
+            const totalVotes = voteCounts.reduce((a, b) => a + b, 0);
+
+            for (let i = 1; i <= 4; i++) {
+                const count = voteCounts[i - 1];
+                const percentage = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+
+                // Update result counts
+                document.getElementById(`result-count-${i}`).textContent = count;
+
+                // Update progress bars
+                document.getElementById(`result-bar-${i}`).style.width = `${percentage}%`;
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
