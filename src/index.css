@@ -1,0 +1,86 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 218 84% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-bfcp-dark to-bfcp-darker text-foreground font-poppins;
+    min-height: 100vh;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glow-text {
+    text-shadow: 0 0 20px rgba(247, 37, 133, 0.7), 0 0 40px rgba(247, 37, 133, 0.5);
+  }
+  
+  .contest-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-bfcp-pink/20;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, #3a0ca3 0%, #7209b7 50%, #f72585 100%);
+  }
+  
+  .progress-bar {
+    @apply h-full bg-gradient-to-r from-bfcp-blue to-bfcp-pink rounded-full transition-all duration-500;
+  }
+}
+
+@keyframes animation-delay-2000 {
+  0% { animation-delay: 2s; }
+}
+
+@keyframes animation-delay-4000 {
+  0% { animation-delay: 4s; }
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
